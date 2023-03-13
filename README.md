@@ -1,3 +1,3 @@
 ## install
-
-composer update
+- Clone This Project
+- composer update
