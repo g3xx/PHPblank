@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace HelloBD;
+namespace PHPblank;
 
 require __DIR__ .'/../vendor/autoload.php';
 
@@ -41,7 +41,7 @@ class Bootstrap {
 		]);
 
         $this->inject['render'] = fn($c) =>
-		new \HelloBD\Render($c['twig'],
+		new \PHPblank\Render($c['twig'],
 		new \Symfony\Component\HttpFoundation\Response,
 		new \Symfony\Component\HttpFoundation\Request);
 
@@ -74,26 +74,26 @@ class Bootstrap {
         switch ($routeInfo[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
                 Response::create("404 Not Found!", Response::HTTP_NOT_FOUND)->prepare($this->request)->send();
-                break;
-                case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                    Response::create("405 Method Not Allowed!", Response::HTTP_METHOD_NOT_ALLOWED)->prepare($this->request)->send();
-                    break;
-                    case \FastRoute\Dispatcher::FOUND:
-                        $handler = $routeInfo[1][0]; // nama class
-			  $method = $routeInfo[1][1]; // method func
-			  $name = lcfirst($handler);
-              if( $this->request->getMethod() == "GET" ){
+            break;
+            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+                Response::create("405 Method Not Allowed!", Response::HTTP_METHOD_NOT_ALLOWED)->prepare($this->request)->send();
+            break;
+            case \FastRoute\Dispatcher::FOUND:
+                $handler = $routeInfo[1][0]; // nama class
+			    $method = $routeInfo[1][1]; // method func
+			    $name = lcfirst($handler);
+                if( $this->request->getMethod() == "GET" ){
                   $vars = $routeInfo[2];
-              }else{
+                }else{
                   $vars = $this->request->query->all();
-              }
-			$depency[$name] = fn($c) => new $handler($c['render']);
-              $response = $depency[$name];
-              $response->$method($vars);
-              if ($response instanceof Response) {
-                  $response->prepare($this->request)->send();
-              }
-		      break;
+                }
+    			$depency[$name] = fn($c) => new $handler($c['render']);
+                $response = $depency[$name];
+                $response->$method($vars);
+                if ($response instanceof Response) {
+                      $response->prepare($this->request)->send();
+                }
+    		break;
         }
 
     }

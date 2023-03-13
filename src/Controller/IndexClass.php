@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
 
-namespace HelloBD\Controller;
+namespace PHPblank\Controller;
 
 
-use HelloBD\Render;
+use PHPblank\Render;
 
 class IndexClass{
 

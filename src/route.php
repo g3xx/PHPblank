@@ -2,6 +2,6 @@
 
 return [
 
-        ['GET', '/', ['HelloBD\Controller\IndexClass','Index'] ],
-        ['GET', '/news', ['HelloBD\Controller\IndexClass','News'] ]
+        ['GET', '/', ['PHPblank\Controller\IndexClass','Index'] ],
+        ['GET', '/news', ['PHPblank\Controller\IndexClass','News'] ]
 ];
