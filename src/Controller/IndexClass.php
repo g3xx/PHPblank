@@ -5,6 +5,7 @@ namespace PHPblank\Controller;
 
 
 use PHPblank\Render;
+//use PHPblank\Model\Users as User; load model from database
 
 class IndexClass{
 

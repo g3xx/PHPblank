@@ -17,6 +17,12 @@
         "filp/whoops": "^2.14",
         "symfony/http-foundation": "^5.4",
         "twig/twig": "^3.0",
-        "pimple/pimple": "^3.0"
+        "pimple/pimple": "^3.0",
+        "illuminate/database": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     }
 }
